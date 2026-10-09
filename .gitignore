@@ -1,0 +1,42 @@
+# Exclude secrets, credential-bearing deployment configuration, and keys.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.crt
+*.cer
+*.csr
+id_rsa*
+id_ed25519*
+*credentials*
+*secret*.json
+*.token
+*password*.txt
+# This lab's original Wazuh Docker Compose file includes credentials.
+**/docker-compose.yml
+**/config/wazuh_indexer_ssl_certs/
+**/wazuh-docker/
+private/
+backups/
+# Runtime/cache artifacts.
+*.log
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+# VMware disks/state/snapshots, never commit VM files.
+*.vmdk
+*.vmem
+*.vmsd
+*.vmsn
+*.vmss
+*.vmx
+*.nvram
+*.iso

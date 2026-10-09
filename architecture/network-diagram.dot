@@ -1,0 +1,20 @@
+digraph SOC {
+  graph [rankdir=TB, bgcolor="white", pad="0.28", nodesep="0.43", ranksep="0.7", fontname="DejaVu Sans", fontsize=18, label="Week 1  |  LabShop Mini-SOC in a Box", labelloc=t, fontcolor="#152a46", splines=polyline];
+  node [shape=plain, fontname="DejaVu Sans"];
+  edge [fontname="DejaVu Sans", fontsize=11, color="#57748b", penwidth=1.8, arrowsize=0.8];
+  internet [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="10" BGCOLOR="#edf4fc" COLOR="#a7bacf"><TR><TD><B>Internet</B><BR/><FONT POINT-SIZE="10">Updates + Docker downloads</FONT></TD></TR></TABLE>>];
+  host [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="10" BGCOLOR="#eaf3ff" COLOR="#8da9d1"><TR><TD><B>Windows 11 host laptop</B><BR/>VMware Workstation Pro<BR/><FONT POINT-SIZE="10">32 GB RAM  |  1 TB disk</FONT><BR/><FONT POINT-SIZE="10">VMnet1 host adapter: 10.10.10.1 (planned / verify)</FONT></TD></TR></TABLE>>];
+  nat [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="10" BGCOLOR="#fff5e6" COLOR="#dfb377"><TR><TD><B>VMnet8</B><BR/><FONT POINT-SIZE="10">NAT | 192.168.121.0/24</FONT></TD></TR></TABLE>>];
+  lan [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="10" BGCOLOR="#e6f6ef" COLOR="#91c6af"><TR><TD><B>VMnet1 - HOST-ONLY LAB</B><BR/>10.10.10.0/24<BR/><FONT POINT-SIZE="10">Static IPs; VMware DHCP off</FONT></TD></TR></TABLE>>];
+  siem [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="9" COLOR="#5e8db8" BGCOLOR="#f5faff"><TR><TD BGCOLOR="#dcecff"><B>siem-host  |  10.10.10.10</B></TD></TR><TR><TD>Ubuntu Server 24.04.5 LTS<BR/><FONT POINT-SIZE="10">16 GB  |  6 vCPU  |  250 GB</FONT></TD></TR><TR><TD><B>Wazuh 4.14.8 (Docker)</B><BR/>Manager  |  Indexer  |  Dashboard<BR/><FONT POINT-SIZE="10">HTTPS 443  |  Agent TCP 1514 / 1515</FONT></TD></TR><TR><TD><FONT POINT-SIZE="10">VMnet1 + VMnet8 NAT</FONT></TD></TR></TABLE>>];
+  linux [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="9" COLOR="#64a892" BGCOLOR="#f2fbf7"><TR><TD BGCOLOR="#d8f3e8"><B>ubuntu-web  |  10.10.10.20</B></TD></TR><TR><TD>Ubuntu Server 24.04.5 LTS<BR/><FONT POINT-SIZE="10">2 GB  |  2 vCPU  |  40 GB</FONT></TD></TR><TR><TD>Wazuh Agent 4.14.8<BR/>Apache web server (HTTP 80)</TD></TR><TR><TD><FONT POINT-SIZE="10">Host-only; no default IPv4 route</FONT></TD></TR></TABLE>>];
+  windows [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="9" COLOR="#64a892" BGCOLOR="#f2fbf7"><TR><TD BGCOLOR="#d8f3e8"><B>win-client  |  10.10.10.30</B></TD></TR><TR><TD>Windows 10 Pro 64-bit<BR/><FONT POINT-SIZE="10">4 GB  |  2 vCPU  |  80 GB</FONT></TD></TR><TR><TD>Wazuh Agent 4.14.8<BR/>Microsoft Sysmon + community rules</TD></TR><TR><TD><FONT POINT-SIZE="10">Host-only; no default IPv4 route</FONT></TD></TR></TABLE>>];
+  internet -> nat [label="Outbound access"];
+  nat -> siem [label="NAT only on siem-host",color="#c38b45"];
+  host -> lan [label="Browser → dashboard (HTTPS)"];
+  lan -> siem [dir=both,label="Dashboard + agent traffic"];
+  lan -> linux [dir=both,label="Lab communications"];
+  lan -> windows [dir=both,label="Lab communications"];
+  {rank=same; nat; lan}
+  {rank=same; siem; linux; windows}
+}
