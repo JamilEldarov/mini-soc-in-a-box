@@ -4,7 +4,7 @@
 
 This project documents a small Security Operations Center powered by **Wazuh 4.14.8**, with Linux and Windows endpoint telemetry, custom detection rules, **Suricata IDS**, file integrity monitoring (FIM), and security assessment.
 
-**Explore:** [Week 1 — Infrastructure](week1/README.md) · [Week 2 — Detection & Hardening](week2/README.md) · [Week 2 Word Report](week2/report/Mini_SOC_Week2_Step_by_Step_A4_Report.docx) · [Evidence](week2/evidence/README.md)
+**Explore:** [Week 1 — Infrastructure](week1/README.md) · [Week 2 — Detection & Hardening](week2/README.md) · [Evidence](week2/evidence/README.md)
 
 ## Lab architecture
 
