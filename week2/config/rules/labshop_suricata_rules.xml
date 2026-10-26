@@ -1,0 +1,8 @@
+<group name="labshop,suricata,">
+  <rule id="100110" level="10">
+    <if_sid>86601</if_sid>
+    <field name="alert.signature_id" type="pcre2">^1000001$</field>
+    <description>LabShop: HTTP admin probe detected from $(src_ip) to $(dest_ip)</description>
+    <group>web_probe,</group>
+  </rule>
+</group>
