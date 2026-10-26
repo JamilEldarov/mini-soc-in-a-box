@@ -31,7 +31,7 @@ All machines communicate over **VMnet1, 10.10.10.0/24 (host-only)**. The SIEM ho
 
 Configured the virtual network and deployed the **Wazuh single-node stack** using Docker. Connected the Linux and Windows endpoints, collected Sysmon and authentication events, and verified that the stack and indexed alerts survived a reboot.
 
-[Detailed setup and results](week1/README.md) · [Week 1 evidence](evidence/README.md) · [Build journal](journal.md)
+[Detailed setup and results](week1/README.md) · [Week 1 evidence](week1/evidence/README.md) · [Build journal](week1/journal.md)
 
 ### Week 2 — Detect and investigate
 
