@@ -8,7 +8,7 @@ This project documents a small Security Operations Center powered by **Wazuh 4.1
 
 ## Lab architecture
 
-![Mini-SOC in a Box — three-VM network architecture](architecture/network-diagram.png)
+![Mini-SOC in a Box — three-VM network architecture](week1/architecture/network-diagram.png)
 
 All machines communicate over **VMnet1, 10.10.10.0/24 (host-only)**. The SIEM host also has a NAT adapter for maintenance; the Linux web server and Windows workstation are isolated from the Internet during final testing.
 
