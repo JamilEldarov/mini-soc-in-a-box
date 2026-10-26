@@ -11,8 +11,6 @@ During Week 1, I deployed a Wazuh-based SOC on an isolated VMware network. In We
 
 ### Lab architecture
 
-![Mini-SOC lab architecture](../architecture/network-diagram.png)
-
 | System | Host-only IP | Main role and software |
 | --- | --- | --- |
 | `siem-host` | `10.10.10.10` | Ubuntu Server; Docker-hosted Wazuh Manager, Indexer and Dashboard **4.14.8** |
